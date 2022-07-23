@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  mongodb:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    container_name: mongodb
+    volumes:
+      - db_data:/data/db
+
+volumes:
+  db_data:
+    driver: local
