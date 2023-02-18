@@ -1,7 +1,7 @@
 import { DashboardLayout } from '@/components/structure/dashboard-layout'
 import { CreatePostInput } from '@/schemas/post.schema'
 import { trpc } from '@/utils/trpc'
-import { Box, Button, Container } from '@mui/material'
+import { Box, Button, Container, Stack, TextField } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 
@@ -34,13 +34,16 @@ function CreatePostPage() {
 
             <h1>Create posts</h1>
 
-            <input type="text" placeholder="Your post title" {...register('title')} />
-            <br />
-            <textarea placeholder="Your post content" {...register('body')} />
-            <br />
-            <Button type="submit" variant="contained">
-              Salvar
-            </Button>
+            <Stack spacing={2} direction="column">
+              <TextField fullWidth label="Title" placeholder="Your post title" {...register('title')} />
+
+              <TextField fullWidth label="Body" placeholder="Your post content" {...register('body')} />
+            </Stack>
+            <Box sx={{ mt: 2 }}>
+              <Button type="submit" variant="contained" color="success" size="large">
+                Salvar
+              </Button>
+            </Box>
           </form>
         </Container>
       </Box>
