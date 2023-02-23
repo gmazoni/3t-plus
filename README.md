@@ -1,9 +1,11 @@
-# Next.js, tRPC, superjson, Zod, Prisma, trpc-openapi
+# Next.js, NextAuth.js, tRPC, superjson, Zod, Prisma, trpc-openapi
 
 Made with:
 
 - [TypeScript](https://www.typescriptlang.org/)
 - [Next.js](https://nextjs.org/)
+- [NextAuth.js](https://next-auth.js.org/)
+- [tailwindcss](https://tailwindcss.com/)
 - [tRPC](https://trpc.io/)
 - [Zod](https://zod.dev/)
 - [Prisma](https://www.prisma.io/)
@@ -25,7 +27,7 @@ npx prisma generate
 # Sync Prisma Schema with Server (Indexes, etc.)
 npx prisma db push
 
-# Seed DB with user admin@teste.com
+# Seed DB with user teste@teste.com
 yarn seed
 
 #for pre-commit hook (Optional)

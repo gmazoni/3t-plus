@@ -34,5 +34,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
-# database file
+# database files
 *.db
+*.dbml

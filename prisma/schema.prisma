@@ -2,6 +2,10 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator dbml {
+  provider = "prisma-dbml-generator" // visualize at https://dbdiagram.io/d
+}
+
 datasource db {
   provider = "sqlite"
   url      = "file:./dev.db"
