@@ -1,5 +1,7 @@
 # Next.js, NextAuth.js, tRPC, superjson, Zod, Prisma, trpc-openapi
 
+![Intro](docs/intro.png)
+
 Made with:
 
 - [TypeScript](https://www.typescriptlang.org/)
