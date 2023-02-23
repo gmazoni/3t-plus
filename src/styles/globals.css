@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .apply-test {
+    @apply rounded-lg shadow-md;
+  }
+}

@@ -1,9 +1,11 @@
+import '../styles/globals.css'
 import { Theme } from '@/theme'
 import { trpc } from '@/utils/trpc'
 import { CssBaseline } from '@mui/material'
 import { ThemeProvider } from '@mui/material/styles'
 import '@tremor/react/dist/esm/tremor.css'
 import { NextPage } from 'next'
+import { SessionProvider } from 'next-auth/react'
 import { AppProps } from 'next/app'
 import { ComponentType, ReactElement, ReactNode } from 'react'
 
@@ -23,7 +25,7 @@ function MyApp({ Component, pageProps }: Props) {
     <>
       <ThemeProvider theme={Theme}>
         <CssBaseline />
-        {getLayout(<Component {...pageProps} />)}
+        <SessionProvider session={pageProps.session}>{getLayout(<Component {...pageProps} />)}</SessionProvider>
       </ThemeProvider>
     </>
   )

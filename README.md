@@ -32,10 +32,6 @@ yarn seed
 husk install
 ```
 
-## Usage
-
-On first login check the console output to get the OTP token
-
 ### Development server
 
 ```bash

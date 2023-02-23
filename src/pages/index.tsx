@@ -1,10 +1,10 @@
 import { DashboardLayout } from '@/components/structure/dashboard-layout'
 import { trpc } from '@/utils/trpc'
-import { Box, Button, Container, LinearProgress } from '@mui/material'
+import { Box, Button, Card, Container, LinearProgress } from '@mui/material'
 import Link from 'next/link'
 
 function PostListingPage() {
-  const { data, isLoading } = trpc.posts.all.useQuery({})
+  const { data, isLoading } = trpc.posts.all.useQuery()
 
   if (isLoading) {
     return <LinearProgress />
@@ -12,27 +12,21 @@ function PostListingPage() {
 
   return (
     <>
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          py: 8,
-        }}
-      >
+      <Box className="flex-grow py-8" component="main">
         <Container maxWidth={false}>
-          <div>
-            <Link href="/posts/new">
-              <Button variant="contained">Create new post</Button>
-            </Link>
-          </div>
+          <Button href="/posts/new" variant="contained" LinkComponent={Link}>
+            Create new post
+          </Button>
 
-          <div style={{ marginTop: 20 }}>
+          <div className="mt-2 flex justify-evenly flex-wrap">
             {data?.map((post) => {
               return (
-                <article key={post.id}>
-                  <p>{post.title}</p>
-                  <Link href={`/posts/${post.id}`}>Read post</Link>
-                </article>
+                <Card className="p-2 m-2 w-96 apply-test" key={post.id}>
+                  <article>
+                    <p>{post.title}</p>
+                    <Link href={`/posts/${post.id}`}>Read post</Link>
+                  </article>
+                </Card>
               )
             })}
           </div>

@@ -8,18 +8,10 @@ export const createUserSchema = z.object({
 export type CreateUserInput = z.TypeOf<typeof createUserSchema>
 
 export const deleteUserSchema = z.object({
-  id: z.string(),
+  email: z.string(),
 })
 
-export const requestOtpSchema = z.object({
-  email: z.string().email(),
-})
-
-export type requestOtpInput = z.TypeOf<typeof requestOtpSchema>
-
-export const verifyOtpSchema = z.object({
-  hash: z.string(),
-})
+export type DeleteUserInput = z.TypeOf<typeof deleteUserSchema>
 
 export const paginationSchema = z.object({
   page: z.number(),

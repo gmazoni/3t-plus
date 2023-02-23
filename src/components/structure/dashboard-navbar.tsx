@@ -4,7 +4,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import LogoutIcon from '@mui/icons-material/Logout'
 import MenuIcon from '@mui/icons-material/Menu'
 import { AppBar, Box, IconButton, Menu, MenuItem, Toolbar, Tooltip } from '@mui/material'
-import Link from 'next/link'
+import { signOut, useSession } from 'next-auth/react'
+import Image from 'next/image'
 import { useState } from 'react'
 
 const DashboardNavbarRoot = styled(AppBar)(({ theme }: { theme: Theme }) => ({
@@ -13,6 +14,8 @@ const DashboardNavbarRoot = styled(AppBar)(({ theme }: { theme: Theme }) => ({
 }))
 
 const AccountMenu = () => {
+  const { data: session } = useSession()
+
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
 
@@ -32,7 +35,11 @@ const AccountMenu = () => {
           aria-haspopup="true"
           onClick={handleClick}
         >
-          <AccountCircleIcon fontSize="large" />
+          {session?.user?.image ? (
+            <Image src={session?.user?.image} style={{ borderRadius: '50%' }} alt="avatar" width={35} height={35} />
+          ) : (
+            <AccountCircleIcon fontSize="large" />
+          )}
         </IconButton>
       </Tooltip>
 
@@ -45,12 +52,10 @@ const AccountMenu = () => {
         }}
       >
         <MenuItem>
-          <Link href="/auth/logout">
-            <Box display="flex" alignItems="center">
-              <LogoutIcon />
-              <Box ml={1}>Logout</Box>
-            </Box>
-          </Link>
+          <Box display="flex" alignItems="center" onClick={() => signOut()}>
+            <LogoutIcon />
+            <Box ml={1}>Logout</Box>
+          </Box>
         </MenuItem>
       </Menu>
     </div>

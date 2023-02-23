@@ -76,10 +76,10 @@ export const DashboardSidebar = (props) => {
           >
             <div>
               <Typography color="inherit" variant="subtitle1">
-                {'Site Login'}
+                {'3T App'}
               </Typography>
               <Typography color="neutral.400" variant="body2">
-                {`${data?.email ?? '-'}`}
+                {`${data?.user?.name ?? data?.user?.email ?? '-'}`}
               </Typography>
             </div>
           </Box>

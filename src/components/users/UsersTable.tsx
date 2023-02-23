@@ -30,8 +30,8 @@ function UsersTable() {
     message: string
   }>({ type: 'success', message: '' })
   const [modalOpen, setModalOpen] = useState(false)
-  const [modaldata, setModalData] = useState<{ id: string; name: string }>({
-    id: '',
+  const [modaldata, setModalData] = useState<{ email: string; name: string }>({
+    email: '',
     name: '',
   })
 
@@ -76,9 +76,9 @@ function UsersTable() {
     router.push(urlParams, urlParams, { shallow: false })
   }
 
-  const deleteUser = (id: string) => {
+  const deleteUser = (email: string) => {
     mutateDeleteUser(
-      { id },
+      { email },
       {
         onSuccess: () => {
           showAlert({ type: 'success', message: 'User deleted successfully' })
@@ -102,14 +102,14 @@ function UsersTable() {
     setAlertOpen(false)
   }
 
-  const showModal = ({ id, name }: { id: string; name: string }) => {
-    setModalData({ id, name })
+  const showModal = ({ email, name }) => {
+    setModalData({ email, name })
     setModalOpen(true)
   }
 
   const hideModal = () => {
     setModalOpen(false)
-    setModalData({ id: '', name: '' })
+    setModalData({ email: '', name: '' })
   }
 
   return (
@@ -170,7 +170,7 @@ function UsersTable() {
                 variant="contained"
                 color="error"
                 onClick={() => {
-                  deleteUser(modaldata.id)
+                  deleteUser(modaldata.email)
                 }}
               >
                 Yes
@@ -201,12 +201,14 @@ function UsersTable() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {tableData?.users?.map((user) => {
+              {tableData?.users.map((user) => {
+                const { email, name, updatedAt } = user
+
                 return (
-                  <TableRow key={user.id}>
-                    <TableCell>{user.name}</TableCell>
-                    <TableCell>{user.email}</TableCell>
-                    <TableCell>{user.updatedAt.toISOString()}</TableCell>
+                  <TableRow key={email}>
+                    <TableCell>{name}</TableCell>
+                    <TableCell>{email}</TableCell>
+                    <TableCell>{updatedAt.toISOString()}</TableCell>
                     <TableCell
                       sx={{
                         display: 'flex',
@@ -214,11 +216,7 @@ function UsersTable() {
                         justifyContent: 'flex-end',
                       }}
                     >
-                      <Button
-                        variant="contained"
-                        color="error"
-                        onClick={() => showModal({ id: user.id, name: user.name })}
-                      >
+                      <Button variant="contained" color="error" onClick={() => showModal({ email, name })}>
                         <DeleteForeverIcon />
                       </Button>
                     </TableCell>
