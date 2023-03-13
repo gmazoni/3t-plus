@@ -14,8 +14,8 @@ export const deleteUserSchema = z.object({
 export type DeleteUserInput = z.TypeOf<typeof deleteUserSchema>
 
 export const paginationSchema = z.object({
-  page: z.number(),
-  perPage: z.number(),
+  page: z.coerce.number().default(1),
+  perPage: z.coerce.number().default(10),
   search: z.string().optional(),
 })
 

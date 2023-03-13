@@ -1,4 +1,5 @@
 import { userComponentsContext } from '@/components/users'
+import { paginationSchema } from '@/schemas/user.schema'
 import { trpc } from '@/utils/trpc'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import {
@@ -41,11 +42,7 @@ function UsersTable() {
     data: tableData,
     isLoading: tableLoading,
     refetch: refetchTableData,
-  } = trpc.user.list.useQuery({
-    page: Number(router.query.page) || 1,
-    perPage: Number(router.query.perPage) || 10,
-    search: String(router.query.search || ''),
-  })
+  } = trpc.user.list.useQuery(paginationSchema.parse(router.query))
 
   useContext(userComponentsContext).refetchTableData = refetchTableData
 

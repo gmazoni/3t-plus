@@ -43,6 +43,11 @@ export const userRouter = router({
   list: protectedProcedure.input(paginationSchema).query(async ({ input, ctx }) => {
     const { page, perPage, search } = input
 
+    console.log(
+      input,
+      Object.values(input).map((a) => typeof a)
+    )
+
     const where: Prisma.UserWhereInput = {
       OR: [{ name: { contains: search ?? '' } }, { email: { contains: search ?? '' } }],
     }
