@@ -1,0 +1,15 @@
+.dockerignore @gmazoni
+.env @gmazoni
+.env.test @gmazoni
+.eslintrc.json @gmazoni
+.gitlab-ci.yml @gmazoni
+.prettierrc.json @gmazoni
+Dockerfile @gmazoni
+docker-compose.prod.yml @gmazoni
+docker-compose.yml @gmazoni
+jest.setup.ts @gmazoni
+/*.config.js @gmazoni
+/*.config.ts @gmazoni
+next-env.d.ts @gmazoni
+tsconfig.json @gmazoni
+.devcontainer @gmazoni

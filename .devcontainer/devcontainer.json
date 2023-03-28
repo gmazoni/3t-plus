@@ -1,0 +1,44 @@
+{
+  "name": "App WEB",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/app-web",
+  "forwardPorts": [3000, 1080, 5432, 6379],
+  "postCreateCommand": ["zsh", "-c", "pnpm install && npx playwright install && npx prisma migrate dev"],
+  "postStartCommand": "echo '🚀  Ready to code!' && exit 0",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "ms-playwright.playwright",
+        "esbenp.prettier-vscode",
+        "Prisma.prisma",
+        "bradlc.vscode-tailwindcss",
+        "SonarSource.sonarlint-vscode",
+        "ms-azuretools.vscode-docker",
+        "eamodio.gitlens",
+        "GitHub.copilot"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "terminal.integrated.profiles.linux": {
+          "zsh": {
+            "path": "/bin/zsh"
+          }
+        }
+      }
+    }
+  },
+  "mounts": [
+    {
+      "type": "bind",
+      "source": "${localEnv:HOME}/.ssh",
+      "target": "/home/node/.ssh"
+    },
+    {
+      "type": "bind",
+      "source": "${localEnv:HOME}/.gnupg",
+      "target": "/home/node/.gnupg"
+    }
+  ]
+}
