@@ -3,9 +3,7 @@
   "dockerComposeFile": "docker-compose.yml",
   "service": "app",
   "workspaceFolder": "/workspaces/app-web",
-  "forwardPorts": [3000, 1080, 5432, 6379],
-  "postCreateCommand": ["zsh", "-c", "pnpm install && npx playwright install && npx prisma migrate dev"],
-  "postStartCommand": "echo '🚀  Ready to code!' && exit 0",
+  "postCreateCommand": ["zsh", "-c", "pnpm install", "npx playwright install", "npx prisma migrate dev"],
   "customizations": {
     "vscode": {
       "extensions": [
@@ -20,12 +18,12 @@
         "GitHub.copilot"
       ],
       "settings": {
-        "terminal.integrated.defaultProfile.linux": "zsh",
         "terminal.integrated.profiles.linux": {
           "zsh": {
-            "path": "/bin/zsh"
+            "path": "/usr/bin/zsh"
           }
-        }
+        },
+        "terminal.integrated.defaultProfile.linux": "zsh"
       }
     }
   },

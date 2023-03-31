@@ -16,6 +16,8 @@ RUN mkdir /commandhistory \
 
 RUN npm install -g npm pnpm
 
+RUN echo "zsh" >> /home/$USERNAME/.bashrc
+
 USER $USERNAME
 
 RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh \

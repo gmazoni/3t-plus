@@ -83,9 +83,9 @@ export default defineConfig({
   /* Folder for test artifacts such as screenshots, videos, traces, etc. */
   outputDir: 'test-results/',
 
-  /* Run your local dev server before starting the tests */
+  // /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'pnpm dev',
+    command: !process.env.CI ? 'pnpm dev' : 'pnpm start',
     port: 3000,
   },
 })

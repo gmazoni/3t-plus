@@ -13,12 +13,12 @@ services:
       - app-web-bashhistory:/commandhistory
       - .p10k.zsh:/.p10k.zsh:cached
     ports:
-      - 3000:3000
+      - 127.0.0.1:3000:3000
     command: /bin/sh -c "while sleep 1000; do :; done"
 
   db:
     image: postgres:15.2-alpine3.17
-    restart: always
+    restart: unless-stopped
     env_file:
       - .env
     volumes:
@@ -30,16 +30,16 @@ services:
       timeout: 1s
       retries: 30
     ports:
-      - 5432:5432
+      - 127.0.0.1:5432:5432
     command: ['postgres', '-c', 'log_statement=all', '-c', 'log_destination=stderr']
 
   cache:
     image: redis:7.0.9-alpine3.17
-    restart: always
+    restart: unless-stopped
     environment:
       - maxmemory-policy=noeviction
     ports:
-      - 6379:6379
+      - 127.0.0.1:6379:6379
     healthcheck:
       test: ['CMD', 'redis-cli', 'ping']
       interval: 1s
@@ -47,10 +47,10 @@ services:
       retries: 30
 
   mailcatcher:
-    restart: always
+    restart: unless-stopped
     image: dockage/mailcatcher:0.8.2
     ports:
-      - 1080:1080
+      - 127.0.0.1:1080:1080
 
   # TODO - Add local unleash server
 
